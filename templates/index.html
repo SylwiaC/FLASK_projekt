@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz Sportowy{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Wybierz kategorię quizu</h2>
+            <a href="/add_question" class="btn btn-primary">+ Dodaj pytanie</a>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card text-center shadow">
+                    <div class="card-body">
+                        <h3 class="card-title">🏎️ Formula 1</h3>
+                        <p class="card-text">Sprawdź swoją wiedzę o Formule 1</p>
+
+                        <a href="{{ url_for('start_quiz', category='F1') }}"
+                           class="btn btn-danger">
+                            Start Quiz
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card text-center shadow">
+                    <div class="card-body">
+                        <h3 class="card-title">🏒 NHL</h3>
+                        <p class="card-text">Sprawdź swoją wiedzę o NHL</p>
+
+                        <a href="{{ url_for('start_quiz', category='NHL') }}"
+                           class="btn btn-primary">
+                            Start Quiz
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

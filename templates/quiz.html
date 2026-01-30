@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">
+                    Pytanie {{ current + 1 }} z {{ total }}
+                </h4>
+            </div>
+
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <p class="fs-5">{{ question.question }}</p>
+
+                    <div class="mb-3">
+                        <input type="text"
+                               name="answer"
+                               class="form-control"
+                               placeholder="Wpisz odpowiedź"
+                               required>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="/" class="btn btn-secondary">Przerwij</a>
+                        <button type="submit" class="btn btn-primary">
+                            Dalej
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
