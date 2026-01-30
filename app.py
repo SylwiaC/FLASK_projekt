@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from extensions import db
 from models import Question
+from models import Score
 import random
 import os
+from models import Score
+from sqlalchemy import func
 
 print("APP STARTING...")
 app = Flask(__name__)
@@ -34,6 +37,9 @@ def index():
 
 @app.route('/start/<category>')
 def start_quiz(category):
+    player = request.args.get('player')
+    session['player'] = player
+
     questions = Question.query.filter_by(category=category).all()
     random.shuffle(questions)
 
@@ -87,6 +93,18 @@ def quiz():
 def result():
     score = session.get('score', 0)
     total = len(session.get('question_ids', []))
+    category = session.get('category')
+    player = session.get('player')
+
+    s = Score(
+        player=player,
+        category=category,
+        score=score,
+        total=total
+    )
+
+    db.session.add(s)
+    db.session.commit()
 
     session.clear()
     return render_template('results.html', score=score, total=total)
@@ -126,7 +144,20 @@ def add_question():
         return redirect(url_for('add_question'))
 
     return render_template('add_question.html')
+# ============================
+# RANKING GRACZY
+# ============================
+@app.route('/ranking')
+def ranking():
 
+    scores = db.session.query(
+        Score.player,
+        Score.category,
+        func.max(Score.score).label("best_score")
+     ).group_by(Score.player, Score.category)\
+     .order_by(func.max(Score.score).desc()).all()
+
+    return render_template("ranking.html", scores=scores)
 
 # ============================
 # START APLIKACJI

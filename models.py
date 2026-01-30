@@ -14,6 +14,7 @@ class Question(db.Model):
 
 class Score(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    player = db.Column(db.String(50))
     category = db.Column(db.String(50))
     score = db.Column(db.Integer)
     total = db.Column(db.Integer)

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Ranking{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">🏆 Ranking graczy</h2>
+
+<table class="table table-striped">
+
+<tr>
+<th>Gracz</th>
+<th>Kategoria</th>
+<th>Najlepszy wynik</th>
+</tr>
+
+{% for player, category, score in scores %}
+<tr>
+<td>{{ player }}</td>
+<td>{{ category }}</td>
+<td>{{ score }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<a href="/" class="btn btn-primary mt-3">
+Powrót
+</a>
+
+{% endblock %}
