@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Wynik{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card text-center shadow">
+
+            <div class="card-header bg-success text-white">
+                <h3>Wynik Quizu</h3>
+            </div>
+
+            <div class="card-body">
+
+                <h4 class="card-title">
+                    Zdobyte punkty:
+                    <strong>{{ score }} / {{ total }}</strong>
+                </h4>
+
+                <br>
+
+                <a href="/" class="btn btn-primary">
+                    Powrót do strony głównej
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+

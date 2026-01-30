@@ -1,3 +1,3 @@
-# FLASK_projekt
+# 🏒🏁 Puck in Paddock
 
-Projekt w Flasku – repozytorium startowe.
+Quiz sportowy o Formule 1 i NHL napisany w Flask + SQLAlchemy.

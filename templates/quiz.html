@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+<div class="col-md-8">
+
+<div class="card shadow">
+
+<div class="card-header bg-dark text-white">
+<h4>Pytanie {{ current + 1 }} z {{ total }}</h4>
+</div>
+
+<div class="card-body">
+
+<form method="POST">
+
+<p class="fs-5">{{ question.question }}</p>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="answer" value="A" required>
+<label class="form-check-label">A: {{ question.option_a }}</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="answer" value="B">
+<label class="form-check-label">B: {{ question.option_b }}</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="answer" value="C">
+<label class="form-check-label">C: {{ question.option_c }}</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="answer" value="D">
+<label class="form-check-label">D: {{ question.option_d }}</label>
+</div>
+
+<br>
+
+<button class="btn btn-primary">Dalej</button>
+
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
