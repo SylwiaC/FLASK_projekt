@@ -2,13 +2,17 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from extensions import db
 from models import Question
 import random
+import os
 
 print("APP STARTING...")
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'twoj-tajny-klucz-zmien-mnie'
 
+ADMIN_PASSWORD = "Celebrini71"
+
 # konfiguracja SQLite
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'quiz.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # inicjalizacja bazy
@@ -94,15 +98,25 @@ def result():
 
 @app.route('/add_question', methods=['GET', 'POST'])
 def add_question():
+
     if request.method == 'POST':
+        password = request.form['password']
+
+        if password != ADMIN_PASSWORD:
+            flash("Błędne hasło admina!", "danger")
+            return redirect(url_for('add_question'))
+
         category = request.form['category']
         question_text = request.form['question']
-        correct_answer = request.form['correct_answer']
 
         q = Question(
             category=category,
             question=question_text,
-            correct_answer=correct_answer
+            option_a=request.form['option_a'],
+            option_b=request.form['option_b'],
+            option_c=request.form['option_c'],
+            option_d=request.form['option_d'],
+            correct_answer=request.form['correct_answer'].upper()
         )
 
         db.session.add(q)

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Dodaj pytanie{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+<div class="col-md-8">
+
+<div class="card shadow">
+
+<div class="card-header bg-dark text-white">
+<h4 class="mb-0">Dodaj nowe pytanie</h4>
+</div>
+
+<div class="card-body">
+
+<form method="POST">
+
+<div class="mb-3">
+<label>Hasło admina</label>
+<input type="password" name="password" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Kategoria</label>
+<select name="category" class="form-select">
+<option value="F1">Formula 1</option>
+<option value="NHL">NHL</option>
+</select>
+</div>
+
+<div class="mb-3">
+<label>Pytanie</label>
+<input name="question" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Odpowiedź A</label>
+<input name="option_a" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Odpowiedź B</label>
+<input name="option_b" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Odpowiedź C</label>
+<input name="option_c" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Odpowiedź D</label>
+<input name="option_d" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Poprawna odpowiedź (A/B/C/D)</label>
+<input name="correct_answer" class="form-control" required>
+</div>
+
+<button class="btn btn-success">Zapisz pytanie</button>
+
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
